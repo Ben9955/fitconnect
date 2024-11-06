@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+:root {
+  /* Primary Colors */
+  --color-background: #fbf7f5; /* Warm Light Beige: Main background */
+  --color-primary: #88ccd9; /* Light Aqua: For buttons and highlights */
+  --color-secondary: #0a5e66; /* Teal Green: Secondary elements */
+  --color-accent: #6f2b77; /* Deep Purple: Accent color */
+  --color-dark: #54112f; /* Dark Maroon: Sidebar text color */
+
+  /* Text Colors */
+  --text-color-primary: #0a5e66; /* Teal Green: For headers */
+  --text-color-secondary: #54112f; /* Dark Maroon: Body text */
+  --text-color-inverse: #fbf7f5; /* Light Beige: Text on dark backgrounds */
+  --text-color-light: #88ccd9;
+
+  /* Font Variable */
+  --font-primary: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* Base font-size for rem scaling */
+}
+
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 50%; /* Adjust font size on smaller screens */
+  }
+}
+
+body {
+  background-color: var(--color-background); /* Main background color */
+  color: var(--text-color-secondary);
+  font-family: var(--font-primary);
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 10rem 1fr;
+  grid-template-columns: 20rem 1fr;
+  height: 100vh;
+
+  grid-template-areas:
+    "side head"
+    "side main";
+}
+
+/* Sidebar */
+.sidebar {
+  grid-area: side;
+}
+
+.sidebar .logo {
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+}
+/* Navbar/Header */
+.navbar {
+  grid-area: head;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 1rem;
+  gap: 3rem;
+}
+
+.nav {
+  flex: 1;
+  max-width: 65rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav button {
+  width: 50%;
+}
+.search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-secondary);
+  border-radius: 2rem;
+  padding: 1rem;
+}
+.search input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color-secondary);
+}
+.search i {
+  font-size: 2rem;
+  color: var(--text-color-light);
+  margin-right: 1rem;
+}
+.search input::placeholder {
+  color: var(--text-color-light);
+  /* font-size: 2rem; */
+}
+
+/* Feed (Main Content) */
+.feed {
+  grid-area: main;
+  padding: 2rem;
+  height: calc(100vh - 10rem - 2rem);
+  overflow-y: scroll;
+}
+
+/* Scrollbar styles */
+.feed::-webkit-scrollbar {
+  width: 1.5rem;
+}
+
+.feed::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+.feed::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 0.5rem;
+}
+
+.feed::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-secondary); /* Darker color when hovered */
+}
+
+/*  Buttons */
+button {
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  color: var(--text-color-secondary);
+  background-color: transparent;
+}
+button:hover {
+  background-color: var(--color-primary);
+}
+
+.navbar button.active {
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+/* Post Container */
+.post {
+  max-width: 65rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.post:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.post .user-details {
+  display: flex;
+  gap: 1rem;
+}
+
+.post .user-img {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  color: var(--text-color-light);
+  font-size: 3rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.post .user-img:hover {
+  opacity: 0.6;
+}
+
+.post .user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post .user-info {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  color: var(--text-color-primary);
+  font-size: 1.3rem;
+}
+
+.post .user-name {
+  font-weight: 900;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.post .user-name:hover {
+  color: var(--text-color-light);
+}
+
+.post-content {
+  margin: -2.8rem 0rem 3rem 6rem;
+}
+
+.post-text {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--text-color-secondary);
+}
+
+.content-img {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.content-img img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* post actions */
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  color: var(--text-color-primary);
+  margin-left: 6rem;
+}
+
+/* Flex container for post actions */
+.post-actions div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Styling for the SVG icons */
+.post-actions svg {
+  width: 2rem;
+  height: 2rem;
+  stroke: var(--color-secondary);
+  stroke-width: 1.5;
+  fill: none;
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect */
+.post-actions div:hover svg {
+  stroke: var(--color-primary);
+  stroke-width: 2;
+  transform: scale(1.1);
+}
+
+/* Change color when 'liked' */
+.post-actions .likes.liked svg {
+  fill: #d64545;
+}
+
+/* Styling for the number text */
+.post-actions p {
+  font-size: 1.6rem;
+  color: inherit;
+}
+
+/* Change color when bookmarked */
+.bookmark.bookmarked svg {
+  fill: var(--color-accent);
+}
