@@ -1,18 +1,17 @@
 import express from "express";
+import {
+  checkLoginStatus,
+  loginUser,
+  logoutUser,
+} from "../controllers/authController.js";
+import { protectRoute } from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  console.log("get login");
-  res.send("get login");
-});
+router.get("/", protectRoute, checkLoginStatus);
 
-router.post("/", (req, res) => {
-  console.log("post login");
-});
+router.post("/", loginUser);
 
-router.delete("/", (req, res) => {
-  console.log("delete login");
-});
+router.delete("/", logoutUser);
 
 export default router;
