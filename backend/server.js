@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 
 import loginRoutes from "./routes/login.js";
 import usersRoutes from "./routes/users.js";
@@ -12,6 +13,8 @@ const app = express();
 
 // we use this middleware to handle body - it parse any json comming in
 app.use(express.json());
+// so we can read the cookies
+app.use(cookieParser());
 
 app.use("/M00981592/login", loginRoutes);
 app.use("/M00981592/users", usersRoutes);
